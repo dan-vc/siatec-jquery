@@ -58,9 +58,12 @@ $(document).ready(function () {
 
             obtenerUsuarios();
 
+            editar = false;
+
             $('#usuarios-form').trigger('reset');
 
         });
+        console.log(editar)
         e.preventDefault();
     });
 
