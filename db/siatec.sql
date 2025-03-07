@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-02-2025 a las 13:18:18
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.1.32
+-- Host: 127.0.0.1
+-- Generation Time: Mar 08, 2025 at 12:38 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,134 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `siatec`
+-- Database: `siatec`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `idcategoria` int(11) NOT NULL,
+  `nomcategoria` varchar(255) NOT NULL,
+  `descategoria` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `categoria`
+--
+
+INSERT INTO `categoria` (`idcategoria`, `nomcategoria`, `descategoria`) VALUES
+(1, 'Lacteos', 'awd\n                                    ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `correo_electronico` varchar(255) NOT NULL,
+  `telefono` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `nombre`, `direccion`, `correo_electronico`, `telefono`) VALUES
+(2, 'Marle', 'Peru', 'mar@gmail.com', '945123386');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `marcas`
+--
+
+CREATE TABLE `marcas` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `marcas`
+--
+
+INSERT INTO `marcas` (`id`, `nombre`, `descripcion`) VALUES
+(2, 'Gloria', 'Lechesssss\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productos`
+--
+
+CREATE TABLE `productos` (
+  `idproducto` int(11) NOT NULL,
+  `nomproducto` varchar(255) NOT NULL,
+  `preproducto` decimal(10,2) NOT NULL,
+  `desproducto` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `productos`
+--
+
+INSERT INTO `productos` (`idproducto`, `nomproducto`, `preproducto`, `desproducto`) VALUES
+(1, 'a', 0.00, '\n                          a          ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `proveedores`
+--
+
+CREATE TABLE `proveedores` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `direccion` text NOT NULL,
+  `correo_electronico` varchar(255) NOT NULL,
+  `telefono` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `proveedores`
+--
+
+INSERT INTO `proveedores` (`id`, `nombre`, `direccion`, `correo_electronico`, `telefono`) VALUES
+(1, 'Gabriel', 'Jaspes', 'gaba@senati.pe', '123456789');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trabajadores`
+--
+
+CREATE TABLE `trabajadores` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `correo_electronico` varchar(255) NOT NULL,
+  `telefono` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `trabajadores`
+--
+
+INSERT INTO `trabajadores` (`id`, `nombre`, `direccion`, `correo_electronico`, `telefono`) VALUES
+(1, 'Peep', 'Marisos', 'pe@senati.pe', '123456789');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -33,10 +153,10 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(50) NOT NULL,
   `clave` varchar(50) NOT NULL,
   `descripcion` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`idusuario`, `usuario`, `clave`, `descripcion`) VALUES
@@ -47,31 +167,103 @@ INSERT INTO `usuarios` (`idusuario`, `usuario`, `clave`, `descripcion`) VALUES
 (5, 'osanchez', '123', 'Usuario supervisor'),
 (6, 'sdara', '123', 'Usuario delegado'),
 (8, 'mmorales', '123456', 'Usuario delegado 2'),
-(9, 'rportal', '123456', 'Usuario delegado nivel 2'),
 (10, 'mpalomino', '123456', 'Usuario delegado nivel 2'),
 (11, 'achiroque', '123456', 'Usuario delegado nivel 3'),
 (12, 'jretuerto', '123456', 'Usuario delegado nivel 3                          '),
 (16, 'jluquech', '123456', 'Usuario Administrador');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `usuarios`
+-- Indexes for table `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`idcategoria`);
+
+--
+-- Indexes for table `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `marcas`
+--
+ALTER TABLE `marcas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`idproducto`);
+
+--
+-- Indexes for table `proveedores`
+--
+ALTER TABLE `proveedores`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `correo_electronico` (`correo_electronico`);
+
+--
+-- Indexes for table `trabajadores`
+--
+ALTER TABLE `trabajadores`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idusuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT for table `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `marcas`
+--
+ALTER TABLE `marcas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `proveedores`
+--
+ALTER TABLE `proveedores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `trabajadores`
+--
+ALTER TABLE `trabajadores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
