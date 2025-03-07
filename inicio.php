@@ -1,3 +1,8 @@
+<?php
+include "auth/validar_sesion.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -5,13 +10,13 @@
 
     <meta charset="utf-8">
 
-    <title>Proveedores Ajax</title>
+    <title>Siatec Ajax</title>
 
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
-        </script>
+    </script>
 
     <!--
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -36,10 +41,9 @@
 
             <div class="col-md-12">
 
-
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-                    <a href="index.html" class="navbar-brand">Siatec Perú</a>
+                    <a href="inicio.php" class="navbar-brand">Siatec Perú</a>
 
                     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
@@ -48,43 +52,45 @@
                     <div class="collapse navbar-collapse" id="collapsibleNavId">
                         <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" href="proveedores.html">Proveedores</a>
+                                <a class="nav-link" href="proveedores.php">Proveedores</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="productos.html">Productos</a>
+                                <a class="nav-link" href="productos.php">Productos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="categoria.html">Categorias</a>
+                                <a class="nav-link" href="categoria.php">Categorias</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="marcas.html">Marcas</a>
+                                <a class="nav-link" href="marcas.php">Marcas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="clientes.html">Clientes</a>
+                                <a class="nav-link" href="clientes.php">Clientes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="trabajadores.html">Trabajadores</a>
+                                <a class="nav-link" href="trabajadores.php">Trabajadores</a>
                             </li>
                         </ul>
                     </div>
 
+                    
                     <ul class="navbar-nav ml-auto">
-
-                        <form class="form-inline my-2 my-lg-0">
-
-                            <input type="search" id="search-proveedor" name="" value="" class="form-control mr-sm-2"
-                                placeholder="Busque al proveedor">
-
+                        
+                        <form class="form-inline m-2 my-lg-0">
+                            
+                            <input type="search" id="search" name="" value="" class="form-control mr-sm-2"
+                            placeholder="Busque al usuario">
+                            
                             <button type="submit" name="button" class="btn btn-success my-2 my-sm-0"
-                                id="">Buscar</button>
-
+                            id="">Buscar</button>
+                            
                         </form>
-
+                        
+                        <a href="auth/cerrarSesion.php" class="btn btn-danger">Cerrar sesión</a>
                     </ul>
 
                 </nav>
 
-                <script type="text/javascript" src="js/proveedores.js">
+                <script type="text/javascript" src="js/app.js">
 
                 </script>
 
@@ -93,9 +99,7 @@
         </div>
 
     </div>
-
     <!-- contenedor 2 -->
-    <!-- Proveedores -->
     <div class="container p-4">
 
         <div class="row">
@@ -106,41 +110,34 @@
 
                     <div class="card-body">
 
-                        <form id="proveedores-form">
+                        <form id="usuarios-form">
 
-                            <input type="hidden" name="" id="proveedorId">
+                            <input type="hidden" name="" id="usuarioId">
 
                             <div class="form-group">
 
-                                <input type="text" id="nombre" placeholder="Nombre del proveedor" name="nombre" value=""
+                                <input type="text" id="usuario" placeholder="Usuario" name="usuario" value=""
                                     class="form-control">
 
                             </div>
 
                             <div class="form-group">
 
-                                <input type="text" id="direccion" placeholder="Dirección" name="direccion" value=""
+                                <input type="password" id="clave" placeholder="Clave" name="clave" value=""
                                     class="form-control">
 
                             </div>
 
                             <div class="form-group">
+                                <textarea name="descripcion" rows="10" cols="30" id="descripcion" class="form-control"
+                                    placeholder="descripcion de usuario">
 
-                                <input type="email" id="email" placeholder="Correo electrónico" name="email" value=""
-                                    class="form-control">
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <input type="tel" id="telefono" placeholder="Teléfono" name="telefono" value=""
-                                    class="form-control">
-
+                                    </textarea>
                             </div>
 
                             <button type="submit" name="button" id="submit"
                                 class="btn btn-primary btn-block text-center">
-                                Guardar proveedor
+                                Guardar Usuario
                             </button>
                         </form>
                     </div>
@@ -148,11 +145,11 @@
             </div>
             <div class="col-md-7">
 
-                <div class="card my-4" id="resultado-proveedor">
+                <div class="card my-4" id="resultado-usuario">
 
                     <div class="card-body">
 
-                        <ul id="resultado-container">
+                        <ul id="container">
 
                         </ul>
                     </div>
@@ -164,15 +161,17 @@
                     <thead>
 
                         <tr>
+
                             <td>Id</td>
-                            <td>Nombre</td>
-                            <td>Dirección</td>
-                            <td>Correo electrónico</td>
-                            <td>Teléfono</td>
+
+                            <td>Usuario</td>
+
+                            <td>Descripcion</td>
+
                         </tr>
                     </thead>
 
-                    <tbody id="proveedores"></tbody>
+                    <tbody id="usuarios"></tbody>
 
                 </table>
             </div>

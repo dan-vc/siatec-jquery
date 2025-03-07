@@ -1,3 +1,7 @@
+<?php
+include "auth/validar_sesion.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -38,7 +42,7 @@
 
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-                    <a href="index.html" class="navbar-brand">Siatec Perú</a>
+                    <a href="inicio.php" class="navbar-brand">Siatec Perú</a>
 
                     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
@@ -47,29 +51,29 @@
                     <div class="collapse navbar-collapse" id="collapsibleNavId">
                         <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="proveedores.html">Proveedores</a>
+                                <a class="nav-link" href="proveedores.php">Proveedores</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="productos.html">Productos</a>
+                                <a class="nav-link" href="productos.php">Productos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="categoria.html">Categorias</a>
+                                <a class="nav-link active" href="categoria.php">Categorias</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="marcas.html">Marcas</a>
+                                <a class="nav-link" href="marcas.php">Marcas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="clientes.html">Clientes</a>
+                                <a class="nav-link" href="clientes.php">Clientes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="trabajadores.html">Trabajadores</a>
+                                <a class="nav-link" href="trabajadores.php">Trabajadores</a>
                             </li>
                         </ul>
                     </div>
 
                     <ul class="navbar-nav ml-auto">
 
-                        <form class="form-inline my-2 my-lg-0">
+                        <form class="form-inline m-2 my-lg-0">
 
                             <input type="search" id="search" name="" value="" class="form-control mr-sm-2"
                                 placeholder="Buscar categoria">
@@ -79,6 +83,7 @@
 
                         </form>
 
+                        <a href="auth/cerrarSesion.php" class="btn btn-danger">Cerrar sesión</a>
                     </ul>
 
                 </nav>
