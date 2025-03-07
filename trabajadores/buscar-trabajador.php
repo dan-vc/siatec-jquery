@@ -3,7 +3,7 @@
     include '../conexion.php';
     $buscar = $_POST['search'];
     if (!empty($buscar)){
-        $cmd = $db->prepare("SELECT * FROM clientes WHERE nombre like '$buscar%'");
+        $cmd = $db->prepare("SELECT * FROM trabajadores WHERE nombre like '$buscar%'");
         $cmd->execute();
         if(!$cmd){
             die('Error de consulta ');
