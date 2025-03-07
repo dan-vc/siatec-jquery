@@ -3,7 +3,7 @@
 include '../conexion.php';
     $id = $_POST['id'];
     if (!empty($id)){
-        $cmd = $db->prepare("select * from productos where idproducto = $id");
+        $cmd = $db->prepare("select * from marcas where id = $id");
         $cmd->execute();
         if(!$cmd){
             die('Error de consulta ');
@@ -13,10 +13,9 @@ include '../conexion.php';
         
         while ($registro = $cmd->fetch()){
             $json[] = array(
-                'producto' => $registro['nomproducto'],
-                'precio' => $registro['preproducto'],
-                'descripcion' => $registro['desproducto'],
-                'idproducto' => $registro['idproducto']
+                'nombre' => $registro['nombre'],
+                'descripcion' => $registro['descripcion'],
+                'id' => $registro['id']
             );
         }
         $json_string = json_encode($json[0]);

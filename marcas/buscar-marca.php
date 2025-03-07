@@ -3,7 +3,7 @@
     include '../conexion.php';
     $buscar = $_POST['search'];
     if (!empty($buscar)){
-        $cmd = $db->prepare("select * from productos where nomproducto like '$buscar%'");
+        $cmd = $db->prepare("SELECT * FROM marcas where nombre like '$buscar%'");
         $cmd->execute();
         if(!$cmd){
             die('Error de consulta ');
@@ -11,10 +11,9 @@
         $json = array();
         while ($registro = $cmd->fetch()){
             $json[] = array(
-                'idproducto' => $registro['idproducto'],
-                'producto' => $registro['nomproducto'],
-                'descripcion' => $registro['desproducto'],
-                'precio' => $registro['preproducto'],
+                'id' => $registro['id'],
+                'nombre' => $registro['nombre'],
+                'descripcion' => $registro['descripcion'],
             );
 		}
         $json_string = json_encode($json);
